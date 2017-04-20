@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Item To Database</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
+</head>
+<body>
+<header>
+    <nav>
+        <div class="nav-wrapper">
+            <a href="index.html" class="brand-logo right">Packing List</a>
+            <ul id="nav-mobile" class="left hide-on-med-and-down">
+                <li><a href="newList.html">New List +</a></li>
+                <li><a href="database.html">My Items</a></li>
+            </ul>
+        </div>
+    </nav>
+</header>
+<section class="addToDataTitle">
+    <h3 class="center-align">Add Item To Database</h3>
+</section>
+    <div class="formBody">
+        <div class="row">
+            <form class="col s12">
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input id="itemName" type="text" class="validate">
+                        <label for="itemName">Item Name</label>
+                    </div>
+                    <div class="input-field col s12">
+                        <select>
+                            <option value="" disabled selected>Classify your Item</option>
+                            <option value="1">Clothing Articles</option>
+                            <option value="2">Toiletries</option>
+                            <option value="3">Food</option>
+                            <option value="4">Footwear</option>
+                            <option value="5">Paperwork</option>
+                        </select>
+                        <label>Item Category</label>
+                    </div>
+                    <div class="input-field col s12">
+                        <textarea id="itemDetail" class="materialize-textarea"></textarea>
+                        <label for="itemDetail">Item Description</label>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="buttonContainer">
+        <a class="waves-effect waves-light btn">Add To Database</a>
+        <a class="waves-effect waves-light btn" onclick="clearForm()">Clear Form</a>
+        <a class="waves-effect waves-light btn">Return To Database</a>
+    </div>
+</body>
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/3.8.0/firebase.js"></script>
+<script src="databaseForm.js"></script>
+</html>
