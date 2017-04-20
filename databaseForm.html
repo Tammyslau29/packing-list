@@ -30,13 +30,16 @@
                         <label for="itemName">Item Name</label>
                     </div>
                     <div class="input-field col s12">
-                        <select>
+                        <select id="category">
                             <option value="" disabled selected>Classify your Item</option>
-                            <option value="1">Clothing Articles</option>
+                            <option value="1">Clothing</option>
                             <option value="2">Toiletries</option>
-                            <option value="3">Food</option>
-                            <option value="4">Footwear</option>
-                            <option value="5">Paperwork</option>
+                            <option value="3">Makeup</option>
+                            <option value="4">Food</option>
+                            <option value="5">Footwear</option>
+                            <option value="6">Paperwork</option>
+                            <option value="7">Gifts</option>
+                            <option value="8">Electronics</option>
                         </select>
                         <label>Item Category</label>
                     </div>
@@ -49,7 +52,7 @@
         </div>
     </div>
     <div class="buttonContainer">
-        <a class="waves-effect waves-light btn">Add To Database</a>
+        <a class="waves-effect waves-light btn" onclick="addToDatabase()">Add To Database</a>
         <a class="waves-effect waves-light btn" onclick="clearForm()">Clear Form</a>
         <a class="waves-effect waves-light btn">Return To Database</a>
     </div>
