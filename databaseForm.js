@@ -26,28 +26,28 @@ function addToDatabase(){
     var dbObject = createDbObject();
     switch ($("#category").val()){
         case "1":
-            database.ref("Clothing/" + dbObject.name + "/").set(dbObject);
+            database.ref("Clothing/").update(dbObject);
             break;
         case "2":
-            database.ref("Toiletries/" + dbObject.name + "/").set(dbObject);
+            database.ref("Toiletries/").update(dbObject);
             break;
         case "3":
-            database.ref("Makeup/" + dbObject.name + "/").set(dbObject);
+            database.ref("Makeup/").update(dbObject);
             break;
         case "4":
-            database.ref("Food/" + dbObject.name + "/").set(dbObject);
+            database.ref("Food/").update(dbObject);
             break;
         case "5":
-            database.ref("Footwear/" + dbObject.name + "/").set(dbObject);
+            database.ref("Footwear/").update(dbObject);
             break;
         case "6":
-            database.ref("Paperwork/" + dbObject.name + "/").set(dbObject);
+            database.ref("Paperwork/").update(dbObject);
             break;
         case "7":
-            database.ref("Gifts/" + dbObject.name + "/").set(dbObject);
+            database.ref("Gifts/").update(dbObject);
             break;
         case "8":
-            database.ref("Electronics/" + dbObject.name + "/").set(dbObject);
+            database.ref("Electronics/").update(dbObject);
             break;
     }
     clearForm();
@@ -55,9 +55,7 @@ function addToDatabase(){
 function createDbObject(){
     var itemName = $("#itemName").val();
     var itemDetail = $("#itemDetail").val();
-    var objectGoingToDb = {
-        name: itemName,
-        detail: itemDetail,
-    }
+    var objectGoingToDb = {};
+    objectGoingToDb[itemName] = itemDetail;
     return objectGoingToDb
 }

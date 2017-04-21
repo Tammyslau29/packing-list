@@ -1,0 +1,19 @@
+body{
+    color:#e2bb42;
+}
+.nav-wrapper{
+    background-color: #80CBC4 !important;
+}
+.formBody{
+    flex: 1;
+    border-right: 2px solid #ffeaa1;
+}
+.listBody{
+    flex: 1;
+}
+.listContainer{
+    display: flex;
+}
+.listItems{
+    margin-left: 20px;
+}

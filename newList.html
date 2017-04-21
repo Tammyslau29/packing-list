@@ -18,45 +18,53 @@
             </div>
         </nav>
     </header>
-    <div class="formBody">
-        <div class="row">
-            <form class="col s12">
-                <div class="row">
-                    <div class="input-field col s6">
-                        <input id="listTitle" type="text" class="validate">
-                        <label for="listTitle">List Title</label>
-                    </div>
-                    <div class="col s12">
-                        <div class="input-field inline">
-                            <input type="date" id="tripDate" class="datepicker">
-                            <label for="tripDate">Trip Date</label>
-                        </div>
-                    </div>
+    <section class="addToDataTitle">
+        <h3 class="center-align">Create New List</h3>
+    </section>
+    <div class="listContainer">
+        <div class="formBody">
+            <div class="row">
+                <form class="col s12">
                     <div class="row">
+                        <div class="input-field col s6">
+                            <input id="listTitle" type="text" class="validate">
+                            <label for="listTitle">List Title</label>
+                        </div>
                         <div class="col s12">
-                            <div class="row">
-                                <div class="input-field col s12">
-                                    <input type="text" id="destination" class="autocomplete">
-                                    <label for="destination">Destination</label>
+                            <div class="input-field inline">
+                                <input type="date" id="tripDate" class="datepicker">
+                                <label for="tripDate">Trip Date</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col s12">
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <input type="text" id="destination" class="autocomplete">
+                                        <label for="destination">Destination</label>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </form>
+            </div>
+        </div>
+        <div class="listBody">
+            <div class="row">
+                <div class="col s12">
                     <div class="row">
-                        <div class="col s12">
-                            <div class="row">
-                                <div class="input-field col s12">
-                                    <input type="text" id="autocomplete-input" class="autocomplete">
-                                    <label for="autocomplete-input">Add Item to List</label>
-                                </div>
-                            </div>
+                        <div class="input-field col s12">
+                            <input type="text" id="autocomplete-input" class="autocomplete">
+                            <label for="autocomplete-input">Add Item to List</label>
                         </div>
                     </div>
-
                 </div>
-            </form>
+            </div>
+            <div class="listItems"></div>
         </div>
     </div>
+
 </body>
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
