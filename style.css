@@ -9,6 +9,7 @@ body{
     border-right: 2px solid #ffeaa1;
 }
 .listBody{
+    display: none;
     flex: 1;
 }
 .listContainer{
@@ -16,4 +17,13 @@ body{
 }
 .listItems{
     margin-left: 20px;
+}
+.listItem, .delete_btn{
+    display: inline-block;
+}
+.deleteBtn{
+    margin: 0 0 7px 7px;
+    height: 20px !important;
+    width: 20px !important;
+    line-height: 20px !important;
 }

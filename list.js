@@ -21,6 +21,7 @@ function initFirebase(){
     firebase.initializeApp(config);
 }
 function autocomplete(){
+    var newList = []
     var database = firebase.database();
     database.ref().once("value").then( function(snapshot){
         var data = snapshot.val();
@@ -37,18 +38,41 @@ function autocomplete(){
             }
             Object.assign(combined, subCombined);
         }
-        console.log(combined);
         $('input.autocomplete').autocomplete({
             data: combined,
             onAutocomplete: function(val) {
                 var itemID = val.split(" - ")[0];
-                var divBody = $("<p>").append($("<input>").attr("type", "checkbox").attr("id", itemID));
+                var divBody = $("<p>").append($("<input>").attr("type", "checkbox").attr("id", itemID)).addClass("listItem");
                 var label = $("<label>").attr("for", itemID).text(val);
+                var deleteBtn = $("<button>").text("x").addClass("deleteBtn btn-floating red").click(function(){
+                    deleteListItem(val, newList)
+                });
                 divBody.append(label);
-                $(".listItems").append(divBody);
+                $(".listItems").append(divBody, deleteBtn);
+                newList.push(val);
+                console.log(newList)
                 $("#autocomplete-input").val("");
             },
             minLength: 1, // The minimum length of the input for the autocomplete to start. Default: 1.
         });
     })
+}
+function deleteListItem(itemName, listArray){
+    for(var i = 0; i < listArray.length; i++){
+        if(listArray[i] === itemName){
+            listArray.splice(i,1)
+        }
+    }
+    console.log("delete called:", listArray)
+    return listArray
+}
+
+function addList(){
+    var userName = "Tammachine"
+    var database = firebase.database();
+    var listTitle = $("#listTitle").val();
+    $(".listBody").css("display", "inline-block");
+    var dbObject = {};
+    dbObject[listTitle] = ["meh"]
+    var newListKey = database.ref("users/" + userName + "/Lists/").update   (dbObject).key
 }
