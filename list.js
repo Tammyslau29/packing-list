@@ -1,6 +1,8 @@
 /**
  * Created by tammyslau on 4/20/17.
  */
+var listTitle = "";
+var userName = "Tammachine";
 $(document).ready(function(){
     $('.datepicker').pickadate({
         selectMonths: true,
@@ -20,8 +22,17 @@ function initFirebase(){
     };
     firebase.initializeApp(config);
 }
+function addList(){
+    var database = firebase.database();
+    listTitle = $("#listTitle").val();
+    $(".listBody").css("display", "inline-block");
+    var dbObject = {};
+    dbObject[listTitle] = ["Empty List"]
+    database.ref("users/" + userName + "/Lists/").update(dbObject)
+}
 function autocomplete(){
-    var newList = []
+    var newList = [];
+    var dbObject = {};
     var database = firebase.database();
     database.ref().once("value").then( function(snapshot){
         var data = snapshot.val();
@@ -41,38 +52,51 @@ function autocomplete(){
         $('input.autocomplete').autocomplete({
             data: combined,
             onAutocomplete: function(val) {
-                var itemID = val.split(" - ")[0];
-                var divBody = $("<p>").append($("<input>").attr("type", "checkbox").attr("id", itemID)).addClass("listItem");
-                var label = $("<label>").attr("for", itemID).text(val);
-                var deleteBtn = $("<button>").text("x").addClass("deleteBtn btn-floating red").click(function(){
-                    deleteListItem(val, newList)
-                });
-                divBody.append(label);
-                $(".listItems").append(divBody, deleteBtn);
+                // var itemID = val.split(" - ")[0];
+                // var divBody = $("<p>").append($("<input>").attr("type", "checkbox").attr("id", itemID)).addClass("listItem");
+                // var label = $("<label>").attr("for", itemID).text(val);
+                // var deleteBtn = $("<button>").text("-").addClass("deleteBtn btn-floating red").click(function(){
+                //     deleteListItem(val, newList)
+                // });
+                // divBody.append(label);
+                // $(".listItems").append(divBody, deleteBtn);
                 newList.push(val);
-                console.log(newList)
+               dbObject[listTitle] = newList;
+                database.ref("users/" + userName + "/Lists/").update(dbObject);
+                database.ref("users/" + userName + "/Lists/").on('value', function(snapshot) {
+                    var listData = snapshot.val();
+                    renderListItem(listData[listTitle]);
+                });
                 $("#autocomplete-input").val("");
             },
             minLength: 1, // The minimum length of the input for the autocomplete to start. Default: 1.
         });
     })
 }
+function renderListItem(list){
+    console.log(list)
+
+
+
+    //
+    // var itemID = val.split(" - ")[0];
+    // var divBody = $("<p>").append($("<input>").attr("type", "checkbox").attr("id", itemID)).addClass("listItem");
+    // var label = $("<label>").attr("for", itemID).text(val);
+    // var deleteBtn = $("<button>").text("-").addClass("deleteBtn btn-floating red").click(function(){
+    //     deleteListItem(val, listArray)
+    // });
+    // divBody.append(label);
+    // $(".listItems").append(divBody, deleteBtn);
+}
 function deleteListItem(itemName, listArray){
+    var newDbObject = {}
     for(var i = 0; i < listArray.length; i++){
         if(listArray[i] === itemName){
             listArray.splice(i,1)
         }
     }
+    newDbObject[listTitle] = listArray
     console.log("delete called:", listArray)
-    return listArray
+    database.ref("users/" + userName + "/Lists/").update(newDbObject)
 }
 
-function addList(){
-    var userName = "Tammachine"
-    var database = firebase.database();
-    var listTitle = $("#listTitle").val();
-    $(".listBody").css("display", "inline-block");
-    var dbObject = {};
-    dbObject[listTitle] = ["meh"]
-    var newListKey = database.ref("users/" + userName + "/Lists/").update   (dbObject).key
-}
